@@ -15,4 +15,19 @@ export const authOptions = {
       clientSecret: process.env.AUTH_GITHUB_SECRET as string,
     }),
   ],
+  callbacks: {
+    async jwt({ token }) {
+      const data = await prisma.user.findUnique({
+        where: { email: token.email! },
+      });
+      const user = { ...data, emailVerified: undefined };
+      return { ...token, user };
+    },
+    async session({ session, token }) {
+      return {
+        ...session,
+        user: token.user,
+      } as unknown as any;
+    },
+  },
 } satisfies NextAuthOptions;

@@ -21,7 +21,7 @@ export const authOptions = {
         where: { email: token.email! },
       });
       const user = { ...data, emailVerified: undefined };
-      return { ...token, user };
+      return { ...token, user } as unknown as any;
     },
     async session({ session, token }) {
       return {
@@ -29,5 +29,8 @@ export const authOptions = {
         user: token.user,
       } as unknown as any;
     },
+  },
+  pages: {
+    signIn: '/login',
   },
 } satisfies NextAuthOptions;

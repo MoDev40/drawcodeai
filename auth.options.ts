@@ -30,7 +30,4 @@ export const authOptions = {
       } as unknown as any;
     },
   },
-  pages: {
-    signIn: '/login',
-  },
 } satisfies NextAuthOptions;

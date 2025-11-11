@@ -16,7 +16,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
   role          String        @default("USER")
-  credit        Int           @default(0)
+  credits        Int           @default(0)
   // Optional for WebAuthn support
   Authenticator Authenticator[]
  

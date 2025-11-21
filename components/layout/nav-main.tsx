@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { IconCirclePlusFilled, type Icon } from '@tabler/icons-react';
+import { IconCirclePlusFilled, type Icon } from "@tabler/icons-react";
 
 import {
   SidebarGroup,
@@ -8,7 +8,8 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from '@/components/ui/sidebar';
+} from "@/components/ui/sidebar";
+import Link from "next/link";
 
 type NavMainProps = {
   items: {
@@ -22,7 +23,7 @@ type NavMainProps = {
 export function NavMain({ items, isQuickActionVisible }: NavMainProps) {
   return (
     <SidebarGroup>
-      <SidebarGroupContent className="flex flex-col gap-2">
+      <SidebarGroupContent className="flex flex-col gap-2 space-y-3">
         {isQuickActionVisible && (
           <SidebarMenu>
             <SidebarMenuItem className="flex items-center gap-2">
@@ -39,10 +40,12 @@ export function NavMain({ items, isQuickActionVisible }: NavMainProps) {
         <SidebarMenu>
           {items.map((item) => (
             <SidebarMenuItem key={item.title}>
-              <SidebarMenuButton tooltip={item.title}>
-                {item.icon && <item.icon />}
-                <span>{item.title}</span>
-              </SidebarMenuButton>
+              <Link href={item.url}>
+                <SidebarMenuButton tooltip={item.title}>
+                  {item.icon && <item.icon size={25} />}
+                  <span>{item.title}</span>
+                </SidebarMenuButton>
+              </Link>
             </SidebarMenuItem>
           ))}
         </SidebarMenu>

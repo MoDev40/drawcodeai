@@ -1,10 +1,7 @@
-'use client';
+"use client";
 
-import { type Icon } from '@tabler/icons-react';
-import * as React from 'react';
-
-import { NavMain } from '@/components/layout/nav-main';
-import { NavUser } from '@/components/layout/nav-user';
+import { NavMain } from "@/components/layout/nav-main";
+import { NavUser } from "@/components/layout/nav-user";
 import {
   Sidebar,
   SidebarContent,
@@ -13,14 +10,36 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from '@/components/ui/sidebar';
-import { PenTool } from 'lucide-react';
+} from "@/components/ui/sidebar";
+import type { Icon } from "@tabler/icons-react";
+import { IconCode, IconPencil, IconWallet } from "@tabler/icons-react";
+import { PenTool } from "lucide-react";
 
-type AppSidebarProps = {
-  routes: { title: string; url: string; icon?: Icon }[];
+type RouteItem = {
+  title: string;
+  url: string;
+  icon?: Icon;
 };
 
-export function AppSidebar({ routes }: AppSidebarProps) {
+const routes: RouteItem[] = [
+  {
+    title: "Draw",
+    url: "/user/dashboard/draw",
+    icon: IconPencil,
+  },
+  {
+    title: "Codes",
+    url: "/user/dashboard/codes",
+    icon: IconCode,
+  },
+  {
+    title: "Pricing",
+    url: "/user/dashboard/pricing",
+    icon: IconWallet,
+  },
+];
+
+export function AppSidebar() {
   return (
     <Sidebar variant="sidebar" collapsible="offcanvas">
       <SidebarHeader>
@@ -41,7 +60,7 @@ export function AppSidebar({ routes }: AppSidebarProps) {
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={routes} isQuickActionVisible={true} />
+        <NavMain items={routes} isQuickActionVisible={false} />
       </SidebarContent>
       <SidebarFooter>
         <NavUser />
